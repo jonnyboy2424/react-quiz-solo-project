@@ -33,10 +33,10 @@ function App() {
       </header>}
 
       {!hasQuizStarted && <button onClick={() => {
-        {
-          console.log(quizQuestions)
-          setHasQuizStarted(!hasQuizStarted)
-        }
+
+        console.log(quizQuestions);
+        setHasQuizStarted(!hasQuizStarted);
+
       }}>Start Quiz</button>}
 
 
