@@ -1,22 +1,22 @@
-export default function Question() {
+export default function Question({ question, incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice }) {
   return (
     <div>
-      <h2>This is a question</h2>
+      <h2>{question}</h2>
       <form>
         <label>
-          <input type="radio" name="option" value="1" /> Option 1
+          <input type="radio" name="option" value="1" /> {incorrectChoice1}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value="2" /> Option 2
+          <input type="radio" name="option" value="2" /> {incorrectChoice2}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value="3" /> Option 3
+          <input type="radio" name="option" value="3" /> {incorrectChoice3}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value="4" /> Option 4
+          <input type="radio" name="option" value="4" /> {correctChoice}
         </label>
       </form>
     </div>
