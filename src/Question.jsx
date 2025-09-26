@@ -1,5 +1,12 @@
-export default function Question({ question, incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice }) {
+import { useEffect } from "react";
+
+export default function Question({ question, incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice, addCorrectAnswer, setSelectedAnswers }) {
   const questionOptions = [incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice];
+
+  useEffect(() => {
+    addCorrectAnswer(correctChoice);
+  }, [])
+
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -8,26 +15,32 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
     }
     return array;
   }
-  const shuffledQuestions = shuffle(questionOptions);
+  const shuffledAnswers = shuffle(questionOptions);
+
+
 
   return (
     <div>
       <h2>{question}</h2>
       <form>
         <label>
-          <input type="radio" name="option" value="1" /> {shuffledQuestions[0]}
+          <input type="radio" name="option" value={shuffledAnswers[0]} />
+          {shuffledAnswers[0]}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value="2" /> {shuffledQuestions[1]}
+          <input type="radio" name="option" value={shuffledAnswers[1]} />
+          {shuffledAnswers[1]}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value="3" /> {shuffledQuestions[2]}
+          <input type="radio" name="option" value={shuffledAnswers[2]} />
+          {shuffledAnswers[2]}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value="4" /> {shuffledQuestions[3]}
+          <input type="radio" name="option" value={shuffledAnswers[3]} />
+          {shuffledAnswers[3]}
         </label>
       </form>
     </div>
