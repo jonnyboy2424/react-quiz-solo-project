@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Question({ question, incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice, addCorrectAnswer, selectedAnswers, setSelectedAnswers }) {
   const questionOptions = [incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice];
+  const [shuffledAnswers] = useState(() => shuffle(questionOptions));
 
   useEffect(() => {
     addCorrectAnswer(correctChoice);
@@ -15,7 +16,6 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
     }
     return array;
   }
-  const shuffledAnswers = shuffle(questionOptions);
 
 
   return (
@@ -23,22 +23,62 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
       <h2>{question}</h2>
       <form>
         <label>
-          <input type="radio" name="option" value={shuffledAnswers[0]} onChange={() => console.log(shuffledAnswers[0])} />
+          <input
+            type="radio"
+            name="option"
+            value={shuffledAnswers[0]}
+            onChange={() =>
+              setSelectedAnswers(prev => ({
+                ...prev,
+                [question]: shuffledAnswers[0]
+              }))
+            }
+          />
           {shuffledAnswers[0]}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value={shuffledAnswers[1]} onChange={() => console.log(shuffledAnswers[1])} />
+          <input
+            type="radio"
+            name="option"
+            value={shuffledAnswers[1]}
+            onChange={() =>
+              setSelectedAnswers(prev => ({
+                ...prev,
+                [question]: shuffledAnswers[1]
+              }))
+            }
+          />
           {shuffledAnswers[1]}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value={shuffledAnswers[2]} onChange={() => console.log(shuffledAnswers[2])} />
+          <input
+            type="radio"
+            name="option"
+            value={shuffledAnswers[2]}
+            onChange={() =>
+              setSelectedAnswers(prev => ({
+                ...prev,
+                [question]: shuffledAnswers[2]
+              }))
+            }
+          />
           {shuffledAnswers[2]}
         </label>
         <br />
         <label>
-          <input type="radio" name="option" value={shuffledAnswers[3]} onChange={() => console.log(shuffledAnswers[3])} />
+          <input
+            type="radio"
+            name="option"
+            value={shuffledAnswers[3]}
+            onChange={() =>
+              setSelectedAnswers(prev => ({
+                ...prev,
+                [question]: shuffledAnswers[3]
+              }))
+            }
+          />
           {shuffledAnswers[3]}
         </label>
       </form>
