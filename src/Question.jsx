@@ -4,9 +4,7 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
   const questionOptions = [incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice];
   const [shuffledAnswers] = useState(() => shuffle(questionOptions));
 
-  useEffect(() => {
-    addCorrectAnswer(correctChoice);
-  }, [])
+
 
 
   function shuffle(array) {
@@ -16,6 +14,16 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
     }
     return array;
   }
+
+
+
+  useEffect(() => {
+    addCorrectAnswer(prev => ({
+      ...prev,
+      [question]: correctChoice
+    })
+    )
+  }, []);
 
 
   return (

@@ -5,7 +5,7 @@ function App() {
   const [hasQuizStarted, setHasQuizStarted] = useState(false);
   const [finishedWithQuiz, setFinishedWithQuiz] = useState(false);
   const [quizQuestions, setQuizQuestions] = useState(null);
-  const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [correctAnswers, setCorrectAnswers] = useState({});
   const [selectedAnswers, setSelectedAnswers] = useState({});
 
   useEffect(() => {
@@ -43,15 +43,14 @@ function App() {
               incorrectChoice2={question.incorrect_answers[1]}
               incorrectChoice3={question.incorrect_answers[2]}
               correctChoice={question.correct_answer}
-              addCorrectAnswer={(answer) => {
-                setCorrectAnswers((prev) => [...prev, answer])
-              }}
+              addCorrectAnswer={setCorrectAnswers}
               selectedAnswers={selectedAnswers}
               setSelectedAnswers={setSelectedAnswers}
             />
           ))}
           {!finishedWithQuiz && <button onClick={() => {
             console.log(selectedAnswers)
+            console.log(correctAnswers)
             setFinishedWithQuiz(!finishedWithQuiz)
           }}>Check Answers</button>}
           {finishedWithQuiz && <button onClick={() => {
