@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-export default function Question({ question, incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice, addCorrectAnswer, selectedAnswers, setSelectedAnswers }) {
-  const questionOptions = [incorrectChoice1, incorrectChoice2, incorrectChoice3, correctChoice];
+export default function Question({ question, addCorrectAnswer, selectedAnswers, setSelectedAnswers }) {
+  const questionOptions = [question.incorrect_answers[0], question.incorrect_answers[1], question.incorrect_answers[2], question.correct_answer];
   const [shuffledAnswers] = useState(() => shuffle(questionOptions));
 
 
@@ -21,7 +21,7 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
   useEffect(() => {
     addCorrectAnswer(prev => ({
       ...prev,
-      [question]: correctChoice
+      [question]: question.correct_answer
     })
     )
   }, []);
@@ -29,7 +29,7 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
 
   return (
     <div>
-      <h2>{question}</h2>
+      <h2>{question.question}</h2>
       <form>
         <label>
           <input

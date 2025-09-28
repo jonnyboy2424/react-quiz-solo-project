@@ -53,12 +53,8 @@ function App() {
         <div>
           {quizQuestions && quizQuestions.map((question, index) => (
             <Question
+              question={question}
               key={index}
-              question={question.question}
-              incorrectChoice1={question.incorrect_answers[0]}
-              incorrectChoice2={question.incorrect_answers[1]}
-              incorrectChoice3={question.incorrect_answers[2]}
-              correctChoice={question.correct_answer}
               addCorrectAnswer={setCorrectAnswers}
               selectedAnswers={selectedAnswers}
               setSelectedAnswers={setSelectedAnswers}
