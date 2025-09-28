@@ -17,6 +17,7 @@ export default function Question({ question, incorrectChoice1, incorrectChoice2,
 
 
 
+
   useEffect(() => {
     addCorrectAnswer(prev => ({
       ...prev,

@@ -7,6 +7,8 @@ function App() {
   const [quizQuestions, setQuizQuestions] = useState(null);
   const [correctAnswers, setCorrectAnswers] = useState({});
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [totalCorrect, setTotalCorrect] = useState(0);
+
 
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple')
@@ -21,6 +23,20 @@ function App() {
       })
   }, []);
 
+
+  function gradeArray(selectedAnswers, correctAnswers) {
+    let score = 0;
+
+    Object.keys(correctAnswers).forEach(questionId => {
+      if (selectedAnswers[questionId] === correctAnswers[questionId]) {
+        score++;
+      } else {
+        console.log("Wrong")
+      }
+    })
+
+    setTotalCorrect(score);
+  }
 
   return (
     <div className="App">
@@ -49,16 +65,19 @@ function App() {
             />
           ))}
           {!finishedWithQuiz && <button onClick={() => {
-            console.log(selectedAnswers)
-            console.log(correctAnswers)
+            gradeArray(selectedAnswers, correctAnswers);
             setFinishedWithQuiz(!finishedWithQuiz)
           }}>Check Answers</button>}
-          {finishedWithQuiz && <button onClick={() => {
-            setHasQuizStarted(false);
-            setFinishedWithQuiz(false);
-          }}>Play Again</button>}
+          {finishedWithQuiz && <div>
+            <h2>You got {totalCorrect} correct</h2>
+            <button onClick={() => {
+              setHasQuizStarted(false);
+              setFinishedWithQuiz(false);
+            }}
+            >Play Again</button>
+          </div>}
         </div>}
-    </div>
+    </div >
   );
 }
 
